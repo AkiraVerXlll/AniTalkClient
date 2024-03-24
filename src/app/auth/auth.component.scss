@@ -2,7 +2,8 @@
   display: flex;
   justify-content: right;
   align-items: center;
-  background-color: #1E1E1E;
+  background: url("https://res.cloudinary.com/anitalk/image/upload/v1711243331/work/auth/auth-background-pattern_okxifj.png") no-repeat right center,
+              url("https://res.cloudinary.com/anitalk/image/upload/v1711242496/work/auth/auth-background_kpryaf.jpg") no-repeat center center;
   min-width: 100vh;
   min-height: 100vh;
 }
@@ -12,29 +13,61 @@
   padding: 25px;
   align-content: center;
   flex-direction: column;
-  margin-right: 5vw;
+  margin-right: 10vw;
   background-color: #383838;
   border-radius: 25px;
-  box-shadow: #FFFFFF;
+  box-shadow: #000000 10px 10px 0px;
 }
 
 .header{
-  font-size: 1.5em;
+  font-size: 2em;
   margin: 0 0 10px 0;
   text-align: center;
 }
 
 .form-element{
-  margin: 10px 0;
+  margin: 15px 0;
+}
+
+.signIn{
+  background-color: #a805fa;
+  color: white;
+}
+
+.oAuth{
+  display: flex;
+  justify-content: center;
+  margin-bottom: 10px;
+}
+
+.logo{
+  align-content: center;
+  height: 1.2em;
+  margin: 0 5px;
 }
 
 input{
   padding: 5px;
-  border-radius: 5px;
+  border-radius: 7px;
   border: none;
+  font-size: 1.5em;
+  border: black 2px solid;
 }
 
 button{
+  margin: 10px 0;
   padding: 5px;
-  border-radius: 5px;
+  border-radius: 7px;
+  font-size: 1.5em;
+  color: black;
+  background-color: #FFFFFF;
+  border: black 2px solid;
+}
+
+a{
+  color: #a805fa;
+}
+
+p{
+  margin: 0 7px;
 }
