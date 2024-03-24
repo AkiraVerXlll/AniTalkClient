@@ -1,17 +1,14 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+import {AuthComponent} from "./auth/auth.component";
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet],
+  imports: [RouterOutlet, AuthComponent],
   template: `
-    <h1>Welcome to {{title}}!</h1>
-
-    <router-outlet />
-  `,
-  styles: [],
+    <auth-component></auth-component>
+  `
 })
 export class AppComponent {
-  title = 'AniTalkClient';
 }
