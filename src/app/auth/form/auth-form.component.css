@@ -3,10 +3,49 @@
   padding: 25px;
   align-content: center;
   flex-direction: column;
-  margin-right: 10vw;
-  background-color: #383838;
-  border-radius: 25px;
-  box-shadow: #000000 10px 10px 0px;
+  border-radius: var(--padding-medium);
+  background-color: var(--darkest-navy);
+}
+.auth-form__title {
+  font-size: 1.5em;
+  text-align: center;
+  margin-bottom: var(--padding-medium);
+}
+.auth-form__input {
+  font-size: 1.2em;
+  margin-bottom: var(--padding-medium);
+  border-radius: var(--padding-small);
+  padding: var(--padding-small);
+  background-color: var(--navy);
+  color: var(--light-aqua);
+  border: 1px solid var(--light-aqua);
+}
+.auth-form__input::placeholder {
+  color: var(--light-aqua);
+  font-weight: 100 !important;
+}
+.auth-form__input:focus {
+  outline: none;
+  border: 2px solid var(--light-aqua);
+}
+.auth-form__input::-ms-reveal {
+  color: var(--light-aqua);
+}
+.auth-form__google-oAuth {
+  display: inline;
+}
+.auth-form__google-oAuth:after {
+  content: url("https://res.cloudinary.com/anitalk/image/upload/v1711832115/work/logos/Google__G__logo.svg_l8l4mo.webp");
+  height: 10px;
+  width: 10px;
+}
+.auth-form__button {
+  font-size: 1.2em;
+  border-radius: var(--padding-medium);
+  background-color: var(--light-aqua);
+  color: var(--navy);
+  padding: var(--padding-small);
+  margin-bottom: var(--padding-small);
 }
 
 /*# sourceMappingURL=auth-form.component.css.map */
