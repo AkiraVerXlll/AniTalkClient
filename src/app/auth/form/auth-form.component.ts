@@ -3,12 +3,12 @@ import {RouterOutlet} from '@angular/router';
 import {NgOptimizedImage} from "@angular/common";
 
 @Component({
-  selector: 'auth-component',
+  selector: 'auth-form',
     standalone: true,
   imports: [RouterOutlet, NgOptimizedImage],
-    templateUrl: './auth.component.html',
-    styleUrl: './auth.component.scss'
+    templateUrl: './auth-form.component.html',
+    styleUrl: './auth-form.component.scss'
     })
-export class AuthComponent {
+export class AuthFormComponent {
 
 }

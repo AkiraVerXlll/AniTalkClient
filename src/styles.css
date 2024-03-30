@@ -1,6 +1,22 @@
-html body {
+:root {
+  --black: #000000;
+  --white: #FFFFFF;
+  --darkest-navy: #000302;
+  --deep-sea: #003530;
+  --ocean-green: #006858;
+  --aqua-marine: #009A7D;
+  --electric-aqua: #00CD9E;
+  --light-aqua: #15F5BA;
+  --padding-min: 4px;
+  --padding-small: 8px;
+  --padding-medium: 16px;
+  --padding-large: 32px;
+  --padding-xlarge: 64px;
+}
+
+body {
   margin: 0;
-  font-family: Popins, sans-serif;
+  font-family: Montserrat, sans-serif;
   color: #FFFFFF;
 }
 
