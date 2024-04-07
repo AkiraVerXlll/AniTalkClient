@@ -24,6 +24,18 @@
   color: var(--light-aqua);
 }
 
-body{
+body, p{
   margin: 0;
+}
+
+input{
+    all: unset;
+}
+
+a{
+  color: var(--light-aqua);
+}
+
+button {
+  all: unset;
 }

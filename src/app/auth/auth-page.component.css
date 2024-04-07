@@ -1,0 +1,10 @@
+.auth-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-width: 100vh;
+  min-height: 100vh;
+  background: var(--gradient);
+}
+
+/*# sourceMappingURL=auth-page.component.css.map */
