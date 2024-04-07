@@ -1,7 +1,40 @@
-html body {
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
+:root {
+  --black: #000000;
+  --white: #FFFFFF;
+  --gray: #27323A;
+  --gradient: radial-gradient(circle at 50% 100%, rgb(0, 104, 88), rgb(0, 53, 48), rgb(0, 3, 2));
+  --darkest-navy: #00110F;
+  --navy: #001F1C;
+  --deep-sea: #003530;
+  --ocean-green: #006858;
+  --aqua-marine: #009A7D;
+  --light-aqua: #15F5BA;
+  --padding-min: 4px;
+  --padding-small: 8px;
+  --padding-medium: 16px;
+  --padding-large: 32px;
+  --padding-xlarge: 64px;
+  user-select: none;
+  font-family: Montserrat, sans-serif;
+  font-weight: 300;
+  color: var(--light-aqua);
+}
+
+body, p {
   margin: 0;
-  font-family: Popins, sans-serif;
-  color: #FFFFFF;
+}
+
+input {
+  all: unset;
+}
+
+a {
+  color: var(--light-aqua);
+}
+
+button {
+  all: unset;
 }
 
 /*# sourceMappingURL=styles.css.map */

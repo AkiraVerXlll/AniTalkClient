@@ -1,0 +1,15 @@
+<form class="auth-form">
+        <p class="auth-form__title"> {{ isSignIn ? 'SignIn' : 'SignUp'}} </p>
+        <input class="auth-form__input" type="text" name="username" placeholder="Username">
+        <input *ngIf="!isSignIn" class="auth-form__input" type="email" name="email" placeholder="Email">
+        <input class="auth-form__input" type="password" name="password" placeholder="Password">
+        <button class="auth-form__button" type="submit">{{ isSignIn ? 'SignIn' : 'SignUp' }}</button>
+        <button *ngIf="isSignIn" class="auth-form__button">
+            <p>Continue with Google&nbsp;</p>
+            <img class="auth-form__google-oAuth" src="https://res.cloudinary.com/anitalk/image/upload/v1712433834/work/logos/Google__G__logo_e9dze4.svg">
+        </button>
+        <p class="auth-form__sign_up_purpose">
+            {{isSignIn ? 'Don\'t have an account?' : 'Already have an account?' }}
+            <a (click)="toggleSignIn()">{{ isSignIn ? 'SignUp' : 'SignIn' }}</a>
+        </p>
+</form>
