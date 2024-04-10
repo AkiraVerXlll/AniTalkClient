@@ -1,11 +1,33 @@
 
 .auth-form{
+  width: 280px;
   display: flex;
-  padding: 25px;
+  padding: var(--padding-medium);
   align-content: center;
   flex-direction: column;
   border-radius: var(--padding-medium);
   background-color: var(--darkest-navy);
+  box-shadow: var(--deep-sea) 5px 5px 5px 0;
+
+  &__fieldset{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: var(--padding-small);
+  }
+
+  &__error{
+    display: flex;
+    flex-wrap: wrap;
+    color: red;
+    font-size: 0.8em;
+    padding-left: var(--padding-small);
+    padding-right: var(--padding-small);
+
+    ::before{
+      content: '•';
+      color: red;
+    }
+  }
 
   &__title{
     font-size: 1.5em;
@@ -13,9 +35,11 @@
     margin-bottom: var(--padding-medium);
   }
 
+
   &__input{
     font-size: 1em;
-    margin-bottom: var(--padding-medium);
+    margin-bottom: var(--padding-small);
+    margin-top: var(--padding-small);
     border-radius: var(--padding-small);
     padding: var(--padding-small);
     background-color: var(--navy);
@@ -23,12 +47,12 @@
     border: 1px solid var(--light-aqua);
 
     &::placeholder{
-      color: var(--light-aqua);
+      color: var(--aqua-marine);
     }
 
     &:focus{
       outline: none;
-      box-shadow: var(--aqua-marine) 0px 0px 0px 1px;
+      box-shadow: var(--aqua-marine) 0 0 0 1px;
     }
 
     &::-ms-reveal{
@@ -60,22 +84,32 @@
     padding: var(--padding-small);
     margin-bottom: var(--padding-small);
 
+    &:disabled{
+      pointer-events: none;
+      background-color: var(--deep-sea);
+      color: var(--ocean-green);
+    }
+
     &:active{
       color: var(--light-aqua);
       background-color: var(--navy);
-      box-shadow: var(--light-aqua) 0px 0px 0px 1px;
+      box-shadow: var(--light-aqua) 0 0 0 1px;
     }
   }
 
-  &__sign_up_purpose{
+  &__small{
     color: var(--aqua-marine);
     padding-right: var(--padding-small);
     padding-left: var(--padding-small);
-
+    font-size: 0.8em;
     a{
       &:active{
         color: var(--aqua-marine);
       }
+    }
+
+    &--top{
+      margin-bottom: var(--padding-small);
     }
   }
 }
