@@ -1,15 +1,45 @@
 <form class="auth-form">
-        <p class="auth-form__title"> {{ isSignIn ? 'SignIn' : 'SignUp'}} </p>
-        <input class="auth-form__input" type="text" name="username" placeholder="Username">
-        <input *ngIf="!isSignIn" class="auth-form__input" type="email" name="email" placeholder="Email">
-        <input class="auth-form__input" type="password" name="password" placeholder="Password">
-        <button class="auth-form__button" type="submit">{{ isSignIn ? 'SignIn' : 'SignUp' }}</button>
-        <button *ngIf="isSignIn" class="auth-form__button">
+    <h1 class="auth-form__title"> {{ isSignIn ? 'Sign In' : 'Sign Up' }} </h1>
+    <fieldset class="auth-form__fieldset" *ngIf="isSignIn" [formGroup]="signInForm">
+        <input class="auth-form__input" type="text" placeholder="Username" formControlName="username">
+        <input class="auth-form__input" type="password" placeholder="Password" formControlName="password">
+    </fieldset>
+    <fieldset class="auth-form__fieldset" *ngIf="!isSignIn" [formGroup]="signUpForm">
+        <input class="auth-form__input" type="text" placeholder="Username" formControlName="username">
+        @if (signUpForm.controls['username'].errors?.['UsernameInvalid'] && signUpForm.controls['username'].value !== '') {
+            <small class="auth-form__error">{{signUpForm.controls['username'].errors?.['UsernameInvalid']}}</small>
+        }
+        <input class="auth-form__input" type="email" placeholder="Email" formControlName="email">
+        @if (signUpForm.controls['email'].errors?.['email'] && signUpForm.controls['email'].value !== '') {
+            <small class="auth-form__error">Invalid email</small>
+        }
+        <input class="auth-form__input" type="password" placeholder="Password" formControlName="password">
+        @if (signUpForm.controls['password'].errors?.['PasswordInvalid'] && signUpForm.controls['password'].value !== '') {
+            <small class="auth-form__error">{{signUpForm.controls['password'].errors?.['PasswordInvalid']}}</small>
+        }
+        <input class="auth-form__input" type="password" placeholder="Confirm Password" formControlName="confirmPassword">
+        @if (signUpForm.errors?.['PasswordDoNotMatch'] &&
+        signUpForm.value['password'] !== '' && signUpForm.value['confirmPassword'] !== '') {
+            <small class="auth-form__error">{{signUpForm.errors?.['PasswordDoNotMatch']}}</small>
+        }
+    </fieldset>
+    @if(isSignIn){
+        <button class="auth-form__button" type="submit">Sign In</button>
+        <button class="auth-form__button">
             <p>Continue with Google&nbsp;</p>
-            <img class="auth-form__google-oAuth" src="https://res.cloudinary.com/anitalk/image/upload/v1712433834/work/logos/Google__G__logo_e9dze4.svg">
+            <img class="auth-form__google-oAuth"
+                 src="https://res.cloudinary.com/anitalk/image/upload/v1712433834/work/logos/Google__G__logo_e9dze4.svg"
+                 alt="">
         </button>
-        <p class="auth-form__sign_up_purpose">
-            {{isSignIn ? 'Don\'t have an account?' : 'Already have an account?' }}
-            <a (click)="toggleSignIn()">{{ isSignIn ? 'SignUp' : 'SignIn' }}</a>
-        </p>
+    }
+    @else{
+        <button class="auth-form__button" [disabled]="!signUpForm.valid" type="submit">Sign Up</button>
+    }
+    <small *ngIf="isSignIn" class="auth-form__small auth-form__small--top">Forgot Password?
+        <a (click)="resetPassword()">Reset Password</a>
+    </small>
+    <small class="auth-form__small">
+        {{ isSignIn ? 'Don\'t have an account?' : 'Already have an account?' }}
+        <a (click)="toggleSignIn()">{{ isSignIn ? 'Sign Up' : 'Sign In' }}</a>
+    </small>
 </form>

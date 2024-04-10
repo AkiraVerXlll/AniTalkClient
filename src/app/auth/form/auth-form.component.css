@@ -1,10 +1,30 @@
+@charset "UTF-8";
 .auth-form {
+  width: 280px;
   display: flex;
-  padding: 25px;
+  padding: var(--padding-medium);
   align-content: center;
   flex-direction: column;
   border-radius: var(--padding-medium);
   background-color: var(--darkest-navy);
+  box-shadow: var(--deep-sea) 5px 5px 5px 0;
+}
+.auth-form__fieldset {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: var(--padding-small);
+}
+.auth-form__error {
+  display: flex;
+  flex-wrap: wrap;
+  color: red;
+  font-size: 0.8em;
+  padding-left: var(--padding-small);
+  padding-right: var(--padding-small);
+}
+.auth-form__error ::before {
+  content: "•";
+  color: red;
 }
 .auth-form__title {
   font-size: 1.5em;
@@ -13,7 +33,8 @@
 }
 .auth-form__input {
   font-size: 1em;
-  margin-bottom: var(--padding-medium);
+  margin-bottom: var(--padding-small);
+  margin-top: var(--padding-small);
   border-radius: var(--padding-small);
   padding: var(--padding-small);
   background-color: var(--navy);
@@ -21,11 +42,11 @@
   border: 1px solid var(--light-aqua);
 }
 .auth-form__input::placeholder {
-  color: var(--light-aqua);
+  color: var(--aqua-marine);
 }
 .auth-form__input:focus {
   outline: none;
-  box-shadow: var(--aqua-marine) 0px 0px 0px 1px;
+  box-shadow: var(--aqua-marine) 0 0 0 1px;
 }
 .auth-form__input::-ms-reveal {
   color: var(--light-aqua);
@@ -51,18 +72,27 @@
   padding: var(--padding-small);
   margin-bottom: var(--padding-small);
 }
+.auth-form__button:disabled {
+  pointer-events: none;
+  background-color: var(--deep-sea);
+  color: var(--ocean-green);
+}
 .auth-form__button:active {
   color: var(--light-aqua);
   background-color: var(--navy);
-  box-shadow: var(--light-aqua) 0px 0px 0px 1px;
+  box-shadow: var(--light-aqua) 0 0 0 1px;
 }
-.auth-form__sign_up_purpose {
+.auth-form__small {
   color: var(--aqua-marine);
   padding-right: var(--padding-small);
   padding-left: var(--padding-small);
+  font-size: 0.8em;
 }
-.auth-form__sign_up_purpose a:active {
+.auth-form__small a:active {
   color: var(--aqua-marine);
+}
+.auth-form__small--top {
+  margin-bottom: var(--padding-small);
 }
 
 /*# sourceMappingURL=auth-form.component.css.map */

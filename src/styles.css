@@ -25,15 +25,11 @@ body, p {
   margin: 0;
 }
 
-input {
-  all: unset;
-}
-
 a {
   color: var(--light-aqua);
 }
 
-button {
+button, h1, input, fieldset, small {
   all: unset;
 }
 

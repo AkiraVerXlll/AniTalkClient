@@ -1,0 +1,6 @@
+{
+  "Api": {
+    "BaseUrl": "http://localhost:52516/api",
+    "ManualSignUp": "/ManualAuth/sign-up"
+  }
+}
