@@ -2,8 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {RouterOutlet} from '@angular/router';
 import {NgIf, NgOptimizedImage} from "@angular/common";
 import {FormBuilder, ReactiveFormsModule, Validators} from "@angular/forms";
-import {confirmPasswordValidator, passwordValidator, usernameValidator} from "../services/auth-form-validators";
-
+import {AuthFormValidators} from "../services/auth-form-validator.service";
 @Component({
     selector: 'auth-form',
     standalone: true,
@@ -13,7 +12,9 @@ import {confirmPasswordValidator, passwordValidator, usernameValidator} from "..
 })
 export class AuthFormComponent {
 
-    constructor(private _fb: FormBuilder) {
+    constructor(
+        private _fb: FormBuilder,
+        private _authFormValidators: AuthFormValidators) {
     }
 
     isSignIn: boolean = true;
@@ -25,12 +26,12 @@ export class AuthFormComponent {
     )
 
     public signUpForm = this._fb.group({
-            username: ['', [Validators.required, usernameValidator]],
+            username: ['', [Validators.required, this._authFormValidators.usernameValidator]],
             email: ['', [Validators.required, Validators.email]],
-            password: ['', [Validators.required, passwordValidator]],
+            password: ['', [Validators.required, this._authFormValidators.passwordValidator]],
             confirmPassword: ['', Validators.required]
         },
-        {validators: confirmPasswordValidator}
+        {validators: this._authFormValidators.confirmPasswordValidator}
     )
 
     submit = () => {
