@@ -7,7 +7,7 @@ import {AuthPageComponent} from "./auth/auth-page.component";
   standalone: true,
   imports: [RouterOutlet, AuthPageComponent],
   template: `
-    <auth-page></auth-page>
+    <router-outlet></router-outlet> 
   `
 })
 export class AppComponent {
