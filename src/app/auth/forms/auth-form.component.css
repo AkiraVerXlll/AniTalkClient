@@ -9,11 +9,6 @@
   background-color: var(--darkest-navy);
   box-shadow: var(--deep-sea) 5px 5px 5px 0;
 }
-.auth-form__fieldset {
-  display: flex;
-  flex-direction: column;
-  margin-bottom: var(--padding-small);
-}
 .auth-form__error {
   display: flex;
   flex-wrap: wrap;
@@ -29,7 +24,7 @@
 .auth-form__title {
   font-size: 1.5em;
   text-align: center;
-  margin-bottom: var(--padding-medium);
+  margin-bottom: var(--padding-small);
 }
 .auth-form__input {
   font-size: 1em;
@@ -40,6 +35,9 @@
   background-color: var(--navy);
   color: var(--light-aqua);
   border: 1px solid var(--light-aqua);
+}
+.auth-form__input--bottom {
+  margin-bottom: var(--padding-medium);
 }
 .auth-form__input::placeholder {
   color: var(--aqua-marine);
