@@ -6,5 +6,17 @@
   min-height: 100vh;
   background: var(--gradient);
 }
+.auth-page__container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  border-radius: var(--padding-medium);
+  background: var(--darkest-navy);
+}
+.auth-page__container__akira-chan {
+  margin-left: var(--padding-medium);
+  width: 15em;
+  height: 15em;
+}
 
 /*# sourceMappingURL=auth-page.component.css.map */

@@ -3,4 +3,5 @@ export const UrlPatterns ={
     "ManualSignUp": "ManualAuth/sign-up",
     "UsernameIsExist": "ManualAuth/username-exist/",
     "EmailIsExist": "ManualAuth/email-exist/",
+    "GoogleOAuth": "GoogleOAuth/google-oauth",
 }

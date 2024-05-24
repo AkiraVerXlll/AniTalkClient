@@ -1,18 +1,27 @@
 <form class="auth-form" [formGroup]="signInForm">
     <h1 class="auth-form__title">Sign In</h1>
-    <input class="auth-form__input" maxlength="20" type="text" placeholder="Username" formControlName="username">
-    <input class="auth-form__input auth-form__input--bottom" maxlength="32" type="password" placeholder="Password" formControlName="password">
-    <button class="auth-form__button" type="submit">Sign In</button>
-    <button class="auth-form__button">
-        <span>Continue with Google&nbsp;</span>
-        <img class="auth-form__google-oAuth"
-             src="https://res.cloudinary.com/anitalk/image/upload/v1712433834/work/logos/Google__G__logo_e9dze4.svg"
-             alt="">
-    </button>
-    <small class="auth-form__small auth-form__small--top">Forgot Password?
+    <div class="auth-form__input-container">
+        <label class="auth-form__label" for="login">Username or email</label>
+        <input [invalidInput]="signInForm.get('username')?.statusChanges" id="login" class="auth-form__input" type="text" formControlName="username">
+    </div>
+    <div class="auth-form__input-container">
+        <label class="auth-form__label" for="password">Password</label>
+        <input [invalidInput]="signInForm.get('password')?.statusChanges" id="password" class="auth-form__input auth-form__input--bottom" maxlength="32" type="password" formControlName="password">
+    </div>
+    <div class="auth-form__button-container">
+        <button class="auth-form__button" type="submit">Sign In</button>
+    </div>
+    <div class="auth-form__button-container">
+        <button (click)="googleOAuth()" class="auth-form__button">
+            <span>Continue with&nbsp;</span>
+            <img class="auth-form__google-oAuth"
+                 src="https://res.cloudinary.com/anitalk/image/upload/v1712433834/work/logos/Google__G__logo_e9dze4.svg" alt="">
+        </button>
+    </div>
+    <small class="auth-form__small">Forgot Password?
         <a (click)="resetPassword()">Reset Password</a>
     </small>
     <small class="auth-form__small">
-        Don\'t have an account? <a routerLink="/auth/sign-up">Sign Up</a>
+        Don't have an account? <a routerLink="/auth/sign-up">Sign Up</a>
     </small>
 </form>

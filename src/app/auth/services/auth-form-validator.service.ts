@@ -1,8 +1,5 @@
 import {
     AbstractControl,
-    AsyncValidator,
-    AsyncValidatorFn,
-    FormBuilder,
     FormGroup,
     ValidationErrors,
     ValidatorFn
@@ -10,11 +7,13 @@ import {
 import {Injectable} from "@angular/core";
 import {HttpClient} from "@angular/common/http";
 import {UrlPatterns} from "../../settings/url-patterns";
-import {map, Observable} from "rxjs";
+import {BaseValidatorsService} from "../../global-services/base-validators.service";
+import {debounce, debounceTime, map, Observable, throttleTime} from "rxjs";
 
 @Injectable()
 export class AuthFormValidators {
-    constructor(private _http: HttpClient) {
+    constructor(private _http: HttpClient,
+                private _baseValidators: BaseValidatorsService) {
     }
 
     private _confirmPasswordPossibleErrors = [
@@ -23,7 +22,7 @@ export class AuthFormValidators {
         {regexp: /(?=.*[A-Z])/g, message: 'The password must contain at least one uppercase letter'},
         {regexp: /(?=.*[a-z])/g, message: 'The password must contain at least one lowercase letter'},
         {regexp: /(?=.*[0-9])/g, message: 'The password must contain at least one digit'},
-        {regexp: /(?=.*\W)/g, message: 'The password must contain at least one special character.'},
+        {regexp: /(?=.*\W)/g, message: 'The password must contain at least one special symbol'},
     ];
 
     private _usernamePossibleErrors = [
@@ -32,15 +31,22 @@ export class AuthFormValidators {
         {regexp: /^[a-zA-Z0-9.]+$/g, message: 'The username must contain only letters, digits and dots'},
     ];
 
-    confirmPasswordValidator: ValidatorFn = (
-        control: AbstractControl
-    ): ValidationErrors | null => {
-        const form = control as FormGroup;
-        const password = form.value['password'];
-        const confirmPassword = form.value['confirmPassword'];
-        if (!password || !confirmPassword) return null;
-        return form.value['password'] === form.value['confirmPassword'] ? null :
-            {PasswordDoNotMatch: 'Passwords do not match'};
+    public addConfirmPasswordValidator  = (
+        confirmPasswordControl: AbstractControl,
+        passwordControl : AbstractControl
+    ) : void => {
+        confirmPasswordControl.valueChanges.subscribe(newValue => {
+            if (newValue === '' || passwordControl.value === '') return;
+            if (newValue !== passwordControl.value) {
+                confirmPasswordControl.setErrors({PasswordDoNotMatch: 'Passwords do not match'});
+            }
+        });
+        passwordControl.valueChanges.subscribe(password => {
+            if (password === '' || confirmPasswordControl.value === '') return;
+            if(confirmPasswordControl.value !== password ) {
+                confirmPasswordControl.setErrors({PasswordDoNotMatch: 'Passwords do not match'});
+            }
+        });
     }
 
     passwordValidator: ValidatorFn = (
@@ -69,29 +75,20 @@ export class AuthFormValidators {
         return null;
     }
 
-    usernameExistValidator: AsyncValidatorFn = (
-        control: AbstractControl
-    ): Observable<ValidationErrors | null> => {
-        const username = control.value;
-        return this._http
-            .get<boolean>(UrlPatterns.BaseUrl + UrlPatterns.UsernameIsExist + username)
-            .pipe(map((isExist : boolean) =>
-                 isExist ?
-                    {UsernameExist: 'The username is already exist'} :
-                    null
-            ));
+    addUsernameExistValidator = (usernameControl: AbstractControl): void => {
+        this._baseValidators.addExistValidator(
+            usernameControl,
+            UrlPatterns.UsernameIsExist,
+            4,
+            'Username is already taken');
     }
 
-    emailExistValidator: AsyncValidatorFn = (
-        control: AbstractControl
-    ): Observable<ValidationErrors | null> => {
-        const email = control.value;
-        return this._http
-            .get<boolean>(UrlPatterns.BaseUrl + UrlPatterns.EmailIsExist + email)
-            .pipe(map((isExist : boolean) =>
-                 isExist ?
-                    {EmailExist: 'The email is already exist'} :
-                    null
-            ));
+    addEmailExistValidator = (emailControl: AbstractControl): void => {
+        this._baseValidators.addExistValidator(
+            emailControl,
+            UrlPatterns.EmailIsExist,
+            2,
+            'Email is already taken');
     }
+
 }

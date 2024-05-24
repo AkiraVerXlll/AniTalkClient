@@ -1,26 +1,33 @@
 <form class="auth-form" [formGroup]="signUpForm">
     <h1 class="auth-form__title">Sign Up</h1>
-    <input class="auth-form__input" maxlength="20" type="text" placeholder="Username" formControlName="username">
-    <small *ngIf="signUpForm.get('username')?.hasError('UsernameInvalid')"
-           class="auth-form__error">{{ signUpForm.get('username')?.errors?.['UsernameInvalid'] }}</small>
-    <small *ngIf="signUpForm.get('username')?.hasError('UsernameExist')"
-           class="auth-form__error">{{ signUpForm.get('username')?.errors?.['UsernameExist'] }}</small>
-    <input class="auth-form__input" maxlength="128" type="email" placeholder="Email" formControlName="email">
-    <small *ngIf="signUpForm.get('email')?.hasError('email')" class="auth-form__error">Invalid email</small>
-    <small *ngIf="signUpForm.get('email')?.hasError('EmailExist')"
-           class="auth-form__error">{{ signUpForm.get('email')?.errors?.['EmailExist'] }}</small>
-    <input class="auth-form__input" maxlength="32" type="password" placeholder="Password" formControlName="password">
-    @if (signUpForm.controls['password'].errors?.['PasswordInvalid'] && signUpForm.controls['password'].value !== "") {
-        <small class="auth-form__error">{{ signUpForm.controls['password'].errors?.['PasswordInvalid'] }}</small>
-    }
-    <input class="auth-form__input auth-form__input--bottom" maxlength="32" type="password"
-           placeholder="Confirm Password"
-           formControlName="confirmPassword">
-    @if (signUpForm.errors?.['PasswordDoNotMatch'] &&
-    signUpForm.value['password'] !== '' && signUpForm.value['confirmPassword'] !== '') {
-        <small class="auth-form__error">{{ signUpForm.errors?.['PasswordDoNotMatch'] }}</small>
-    }
-    <button (click)="signUp()" type="button" class="auth-form__button" [disabled]="!signUpForm.valid">Sign Up</button>
+    <div class="auth-form__input-container">
+        <label for="username" class="auth-form__label">Username</label>
+        <input id="username" class="auth-form__input" [invalidInput]="signUpForm.get('username')?.statusChanges" maxlength="20" type="text" formControlName="username">
+        <small *ngIf="signUpForm.get('username')?.hasError('UsernameInvalid')"
+               class="auth-form__error">{{ signUpForm.get('username')?.errors?.['UsernameInvalid'] }}</small>
+        <small *ngIf="signUpForm.get('username')?.hasError('isExist')"
+               class="auth-form__error">{{ signUpForm.get('username')?.errors?.['isExist'] }}</small>
+    </div>
+    <div class="auth-form__input-container">
+        <label for="email" class="auth-form__label">Email</label>
+        <input id="email" class="auth-form__input" [invalidInput]="signUpForm.get('email')?.statusChanges" maxlength="128" type="email" formControlName="email">
+        <small *ngIf="signUpForm.get('email')?.hasError('email')" class="auth-form__error">Invalid email</small>
+        <small *ngIf="signUpForm.get('email')?.hasError('isExist')"
+               class="auth-form__error">{{ signUpForm.get('email')?.errors?.['isExist'] }}</small>
+    </div>
+    <div class="auth-form__input-container">
+        <label for="password" class="auth-form__label">Password</label>
+        <input id="password" class="auth-form__input" [invalidInput]="signUpForm.get('password')?.statusChanges" maxlength="32" type="password" formControlName="password">
+        <small *ngIf="signUpForm.get('password')?.hasError('PasswordInvalid')" class="auth-form__error">{{ signUpForm.get('password')?.errors?.['PasswordInvalid'] }}</small>
+    </div>
+    <div class="auth-form__input-container">
+        <label for="confirmPassword" class="auth-form__label">Confirm Password</label>
+        <input id="confirmPassword" class="auth-form__input" [invalidInput]="signUpForm.get('confirmPassword')?.statusChanges" maxlength="32" type="password" formControlName="confirmPassword">
+        <small *ngIf="signUpForm.get('confirmPassword')" class="auth-form__error">{{ signUpForm.get('confirmPassword')?.errors?.['PasswordDoNotMatch'] }}</small>
+    </div>
+    <div class="auth-form__button-container">
+        <button (click)="signUp()" type="button" class="auth-form__button" [disabled]="!signUpForm.valid">Sign Up</button>
+    </div>
     <small class="auth-form__small">
         Already have an account? <a routerLink="/auth/sign-in">Sign In</a>
     </small>

@@ -20,6 +20,7 @@
 
   user-select: none;
   font-family: Montserrat, sans-serif;
+  font-size: 24px;
   font-weight: 300;
   color: var(--light-aqua);
 }
@@ -33,4 +34,21 @@ a{
 
 button, h1, input, fieldset, small{
   all: unset;
+}
+
+.input{
+  &--invalid{
+    border: 1px solid red;
+    &:focus{
+      outline: none;
+      box-shadow: red 0 0 0 1px;
+    }
+  }
+  &--valid{
+    border: 1px solid var(--light-aqua);
+    &:focus{
+      outline: none;
+      box-shadow: var(--aqua-marine) 0 0 0 1px;
+    }
+  }
 }

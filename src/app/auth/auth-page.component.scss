@@ -5,4 +5,18 @@
   min-width: 100vh;
   min-height: 100vh;
   background: var(--gradient);
+
+  &__container{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    border-radius: var(--padding-medium);
+    background: var(--darkest-navy);
+
+    &__akira-chan{
+      margin-left: var(--padding-medium);
+      width: 15em;
+      height: 15em;
+    }
+  }
 }
