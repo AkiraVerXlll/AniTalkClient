@@ -3,7 +3,7 @@ import {Router, RouterLink, RouterOutlet} from '@angular/router';
 import {NgIf, NgOptimizedImage} from "@angular/common";
 import {FormBuilder, ReactiveFormsModule, Validators} from "@angular/forms";
 import {AuthFormValidators} from "../services/auth-form-validator.service";
-import {HttpClient, HttpClientModule} from "@angular/common/http";
+import {HttpClient, HttpClientModule, HttpHeaders} from "@angular/common/http";
 import {InvalidInputDirective} from "../directives/invalid-input.directive";
 import {UrlPatterns} from "../../settings/url-patterns";
 import {map} from "rxjs";
@@ -36,11 +36,11 @@ export class SignInFormComponent {
 
     googleOAuth = () => {
         this._http
-            .get(UrlPatterns.BaseUrl + UrlPatterns.GoogleOAuth)
+            .get(UrlPatterns.BaseUrl + UrlPatterns.GoogleOAuth, {withCredentials: true})
             .pipe(map((res: any) => res.value))
             .subscribe({
                 next: (url) => {
-
+                    window.location.href = url;
                 }
             });
     }
